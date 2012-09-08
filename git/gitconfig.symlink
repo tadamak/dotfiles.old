@@ -8,12 +8,36 @@
     excludesfile = ~/.gitignore
     safecrlf = false
     quotepath = off
-    autocrlf = true
+    autocrlf = false
+    editor = subl -w
 [apply]
     whitespace = warn
 [github]
     user = tadamak
+
 [alias]
+############################################################
+# Copyright (C) 2008 kana <http://whileimautomaton.net/>
+#
+# Permission is hereby granted, free of charge, to any person obtaining
+# a copy of these configuration files, associated documentation files,
+# scripts and other associated files (the "Configuration"), to deal in the
+# Configuration without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Configuration, and to permit persons to whom the
+# Configuration is furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in
+# all copies or substantial portions of the Configuration.
+#
+# THE CONFIGURATION IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+# EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+# MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
+# NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+# DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+# OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE CONFIGURATION OR
+# THE USE OR OTHER DEALINGS IN THE CONFIGURATION.
+############################################################
     b = branch
     ba = branch -a
     br = branch -r
@@ -47,10 +71,11 @@
     mp = !git merge-to-pull
     ra = rebase --abort
     rc = rebase --continue
-    #review
+    review = !git log -p --reverse \"${1:master}..HEAD\" --
     rh = reset --hard
-    #ri
-    #rib
+    ri = !git rebase -i \"HEAD~${1:-10}\"
+    rib = !git rebase -i ${git merge-base \"${1:-HEAD}\" HEAD)
+    rma = !git status | grep 'deleted' | awk '{print $3}' | xargs git rm
     rs = reset --soft
     rw = reset --hard ORIG_HEAD
     rx = reset --mixed
@@ -60,7 +85,7 @@
     s3 = show HEAD@{3}
     sa = stash apply
     sd = stash drop
-    #since
+    since = !git lg \"$1..HEAD\"
     sl = stash list
     sm = submodule
     sma = submodule add
@@ -69,6 +94,8 @@
     smu = submodule update
     sp = stash pop
     ss = stash save
-    st = status
+    st = status --short --branch
+    stt = status
     t = tag
     td = tag -d
+    tv = !git tag \"$1\" -m \"Version $1\"
