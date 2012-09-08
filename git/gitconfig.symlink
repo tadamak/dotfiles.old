@@ -1,0 +1,74 @@
+[user]
+    name = tadamak
+    email = tadamak@gmail.com
+[color]
+    ui = auto
+[core]
+    pager = less -r
+    excludesfile = ~/.gitignore
+    safecrlf = false
+    quotepath = off
+    autocrlf = true
+[apply]
+    whitespace = warn
+[github]
+    user = tadamak
+[alias]
+    b = branch
+    ba = branch -a
+    br = branch -r
+    ci = commit
+    co = checkout
+    cob = checkout -b
+    cp = cherry-pick
+    d = diff
+    db = diff HEAD
+    ds = diff --cached
+    du = diff
+    f = fetch
+    fix = commit --amend
+    fixup = !git fu
+    fu = commit --amend -C HEAD
+    l = log
+    l1 = log --pretty=oneline --abbrev-commit
+    lg = log --graph --pretty=oneline --abbrev-commit --decorate
+    lgd = !git lg
+    lgD = !git lg --no-decorate
+    lgr = !git lg -n10
+    lgrr = !git lg -n20
+    lgrrr = !git lg -n30
+    #lr
+    ls = ls-files
+    m = merge --log
+    mb = merge-base
+    merge-to-integrate = !git m --no-ff
+    merge-to-pull = !git m --ff
+    mi = !git merge-to-integrate
+    mp = !git merge-to-pull
+    ra = rebase --abort
+    rc = rebase --continue
+    #review
+    rh = reset --hard
+    #ri
+    #rib
+    rs = reset --soft
+    rw = reset --hard ORIG_HEAD
+    rx = reset --mixed
+    s = show
+    s1 = show HEAD@{1}
+    s2 = show HEAD@{2}
+    s3 = show HEAD@{3}
+    sa = stash apply
+    sd = stash drop
+    #since
+    sl = stash list
+    sm = submodule
+    sma = submodule add
+    smi = submodule init
+    sms = submodule status
+    smu = submodule update
+    sp = stash pop
+    ss = stash save
+    st = status
+    t = tag
+    td = tag -d
