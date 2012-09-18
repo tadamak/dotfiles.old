@@ -1,0 +1,75 @@
+set -g prefix C-t
+unbind C-b
+set -sg escape-time 1
+bind C-t send-prefix
+
+bind r source-file ~/.tmux.conf \; display "Reloaded!"
+
+setw -g mode-mouse off
+
+bind v split-window -v
+bind | split-window -h
+
+bind h select-pane -L
+bind j select-pane -D
+bind k select-pane -U
+bind l select-pane -R
+
+bind -r C-h select-window -t :-
+bind -r C-l select-window -t :+
+
+bind -r H resize-pane -L 2
+bind -r L resize-pane -R 2
+bind -r J resize-pane -D 4
+bind -r K resize-pane -U 4
+
+set -g default-terminal "screen"
+
+# statusbar
+set -g status-fg colour136 #yellow
+set -g status-bg colour235 #base02
+set -g status-attr default
+# window title
+set -g window-status-fg colour244
+set -g window-status-bg default
+set -g window-status-attr dim
+# active window title
+setw -g window-status-current-fg colour166 #orange
+setw -g window-status-current-bg default
+setw -g window-status-current-attr bright
+# pane border
+set -g pane-border-fg colour235 #base02
+#set -g pane-border-bg black
+set -g pane-active-border-fg colour240 #base01
+#set -g pane-active-border-bg yellow
+# message text
+set -g message-fg colour166 #orange
+set -g message-bg colour235 #base01
+set -g message-attr bright
+# pane number display
+set -g display-panes-active-colour colour33 #blue
+set -g display-panes-colour colour166 #orange
+# clock
+setw -g clock-mode-colour colour64 #green
+
+#set -g status-left-length 40
+#set -g status-left "#[fg=green]#S #[fg=yellow]#I #[fg=cyan]#P"
+#set -g status-right "#[fg=cyan]%d %b %R"
+set -g status-left "#S #[default,fg=color240]#W #[default,fg=color244](#I/#P)#[default] @#h#[default,fg=colour45]"
+set -g status-left-length 40
+set -g status-right "#[fg=colour211,bold]%Y/%m/%d #[fg=colour81]%H:#[default,fg=colour75,bold]%M#[default]"
+set -g status-right-length 40
+
+set -g status-utf8 on
+set -g status-interval 15
+set -g status-justify centre
+
+setw -g monitor-activity on
+set -g visual-activity on
+
+#unbind Up
+#bind Up new-window -d -n tmp \; swap-pane -s tmp.1 \; select-window -t tmp unbind Down
+#bind Down last-window \; swap-pane -s tmp.1 \; kill-window -t tmp
+
+# Log output to a text file on demand
+bind P pipe-pane -o "cat >>~/#W.log" \; display "Toggled logging to ~/#W.log"
