@@ -55,7 +55,8 @@ rb_prompt() {
 todo() {
   if $(which todo.sh &> /dev/null)
   then
-    num=$(echo $(todo.sh ls +next | wc -l))
+    config=$(echo "$DROPBOX/todo/.config")
+    num=$(echo $(todo.sh -d $config ls +next | wc -l))
     let todos=num-2
     if [ $todos != 0 ]
     then
