@@ -21,3 +21,7 @@ brew install --disable-etcdir zsh
 
 # Install rbenv
 . ./brew_rbenv
+
+# Install tmux
+brew install tmux
+brew install reattach-to-user-namespace

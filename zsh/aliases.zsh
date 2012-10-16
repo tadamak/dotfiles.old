@@ -4,5 +4,6 @@ alias -g L='| lv'
 alias -g G='| grep'
 alias -g T='| tail'
 
-alias e='subl'
+alias e='emacsclient -t'
 alias pd='popd'
+alias sb='subl'

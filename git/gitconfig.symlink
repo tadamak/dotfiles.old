@@ -9,7 +9,7 @@
     safecrlf = false
     quotepath = off
     autocrlf = false
-    editor = subl -w
+    editor = emacsclient
 [apply]
     whitespace = warn
 [github]
