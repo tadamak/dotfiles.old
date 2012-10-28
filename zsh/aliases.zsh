@@ -6,4 +6,4 @@ alias -g T='| tail'
 
 alias e='emacsclient'
 alias pd='popd'
-alias sb='subl'
+alias hi='history'

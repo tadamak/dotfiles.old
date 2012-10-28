@@ -43,10 +43,14 @@ need_push() {
 rb_prompt() {
   if $(which rbenv &> /dev/null)
   then
-    echo "%{$fg_bold[blue]%}[rb:$(rbenv version | awk '{print $1}')]%{$reset_color%}"
+    echo "%{$fg_bold[red]%}[rb:$(rbenv version | awk '{print $1}')]%{$reset_color%}"
   else
     echo ""
   fi
+}
+
+hg_prompt() {
+  hg prompt "on %{$fg_bold[blue]%}{branch}%{$reset_color%}%{$fg_bold[magenta]%}{status}%{$reset_color%}%{$fg_bold[green]%}{update}%{$reset_color%}" 2> /dev/null
 }
 
 # This keeps the number of todos always available the right hand side of my
@@ -77,7 +81,7 @@ machine_name() {
   echo "%{$fg_bold[yellow]%}%m%{$reset_color%}"
 }
 
-export PROMPT=$'\n$(machine_name): $(directory_name) $(git_dirty)$(need_push)\n› '
+export PROMPT=$'\n$(machine_name): $(directory_name) $(hg_prompt)$(git_dirty)$(need_push)\n› '
 set_prompt() {
   export RPROMPT="%{$fg_bold[cyan]%}$(todo) $(rb_prompt)%{$reset_color%}"
 }
