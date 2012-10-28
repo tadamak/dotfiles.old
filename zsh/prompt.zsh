@@ -49,8 +49,13 @@ rb_prompt() {
   fi
 }
 
+#http://stevelosh.com/blog/2010/02/my-extravagant-zsh-prompt/
 hg_prompt() {
-  hg prompt "on %{$fg_bold[blue]%}{branch}%{$reset_color%}%{$fg_bold[magenta]%}{status}%{$reset_color%}%{$fg_bold[green]%}{update}%{$reset_color%}" 2> /dev/null
+  hg prompt --angle-brackets "\
+<on %{$fg[magenta]%}<branch>%{$reset_color%}>\
+< at %{$fg[yellow]%}<tags|%{$reset_color%}, %{$fg[yellow]%}>%{$reset_color%}>\
+%{$fg[green]%}<status|modified|unknown><update>%{$reset_color%}<
+patches: <patches|join( → )|pre_applied(%{$fg[yellow]%})|post_applied(%{$reset_color%})|pre_unapplied(%{$fg_bold[white]%})|post_unapplied(%{$reset_color%})>>" 2>/dev/null
 }
 
 # This keeps the number of todos always available the right hand side of my
