@@ -1,8 +1,11 @@
 [ui]
 username = Takehiro KAMADA <tadamak@timedia.co.jp>
+ignore = ~/.hgignore
+ssh = ssh -C
 
 [extensions]
 color =
+eol =
 graphlog =
 mq =
 pager =
@@ -30,7 +33,7 @@ diff.changed = white
 diff.trailingwhitespace = white_background
 
 [alias]
-#_status = status
+_status = status
 st = ! $HG _status $($HG root) $HG_ARGS
 
 # branch
@@ -44,6 +47,9 @@ conflicts = resolve -l
 uselocal = resolve --tool internal:local
 useother = resolve --tool internal:other
 
+# update
+u = update
+
 # push
 nudge = push --rev .
 #push = ! echo -e "\033[31m(use 'hg nudge' to push changesets)\033[m"
@@ -54,6 +60,12 @@ dl = !"$HG" diff -p --color=always $@ | less -R
 
 # log
 gl = glog -l10 --template='\033[0;33m{rev}\033[0m {desc|firstline|strip} \033[0;35m{branches}\033[0m \033[0;33m{tags}\033[0m\n\033[1;30m({date|age} by {author|person})\033[0m\n\n'
+show = log --color=always -pr
+less = log -pr "reverse(not merge())"
+
+# shortlog
+l = log  --template '\033[31m{rev}:{node|short}\033[m | {date|shortdate} | {author|user}: {desc|strip|firstline}\n'
+ll = glog --template '\033[31m{rev}:{node|short}\033[m | {date|shortdate} | {author|user}: {desc|strip|firstline}\n\033[36m{branches}\033[m\n'
 
 # ack
 ack = !$HG locate "set:not ignored()" | xargs ack $@
@@ -65,7 +77,8 @@ bug = !$HOME/.dotfiles/hg/t.py --task-dir="`$HG root`" --list=BUGS $@
 todo = !$HOME/.dotfiles/hg/t.py --task-dir="`$HG root`" --list=TODO $@
 
 [pager]
-attend = annotate, cat, diff, export, glog, log, qdiff, help
+pager = LESS='FRX' less
+attend = annotate, cat, diff, export, glog, log, qdiff, help, show, less, l, ll, gl, ack, bug, todo
 
 [diff]
 git = True
