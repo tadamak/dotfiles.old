@@ -15,7 +15,7 @@ end
 
 begin
   require 'hirb'
-rescue LoanError
+rescue LoadError
   puts "no hirb :("
 end
 
