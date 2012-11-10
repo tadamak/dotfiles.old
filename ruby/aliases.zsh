@@ -8,4 +8,5 @@ alias sc='script/rails console'
 alias sg='script/rails generate'
 alias ss='script/rails server'
 alias migrate='rake db:migrate'
-
+alias re='rbenv'
+alias rr='rbenv rehash'
