@@ -59,13 +59,23 @@ di = diff -p --color=auto
 dl = !"$HG" diff -p --color=always $@ | less -R
 
 # log
-gl = glog -l10 --template='\033[0;33m{rev}\033[0m {desc|firstline|strip} \033[0;35m{branches}\033[0m \033[0;33m{tags}\033[0m\n\033[1;30m({date|age} by {author|person})\033[0m\n\n'
+gl = glog -l100 --template='\033[0;33m{rev}\033[0m {desc|firstline|strip} \033[0;35m{branches}\033[0m \033[0;33m{tags}\033[0m\n\033[1;30m({date|age} by {author|person})\033[0m\n\n'
 show = log --color=always -pr
 less = log -pr "reverse(not merge())"
 
 # shortlog
 l = log  --template '\033[31m{rev}:{node|short}\033[m | {date|shortdate} | {author|user}: {desc|strip|firstline}\n'
 ll = glog --template '\033[31m{rev}:{node|short}\033[m | {date|shortdate} | {author|user}: {desc|strip|firstline}\n\033[36m{branches}\033[m\n'
+
+# mq
+qi = qimport
+qr = qrefresh
+qf = qfinish
+ql = qseries -v
+qls = qseries --summary
+qst = status --change qtip
+qdrag = qpush --move
+qnow = ! $HG qnew $(date +'%Y-%m-%d_%H-%M-%S.diff) -m "[from now] $(date +'%Y-%m-%d %H:%M:%S')" $@
 
 # ack
 ack = !$HG locate "set:not ignored()" | xargs ack $@
@@ -75,6 +85,7 @@ ack = !$HG locate "set:not ignored()" | xargs ack $@
 # Install t first: http://bitbucket.org/sjl/t/
 bug = !$HOME/.dotfiles/hg/t.py --task-dir="`$HG root`" --list=BUGS $@
 todo = !$HOME/.dotfiles/hg/t.py --task-dir="`$HG root`" --list=TODO $@
+fixme = !$HOME/.dotfiles/hg/t.py --task-dir="`$HG root`" --list=FIXME $@
 
 [pager]
 pager = LESS='FRX' less
