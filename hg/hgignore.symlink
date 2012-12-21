@@ -1,2 +1,6 @@
 syntax: glob
 vendor/bundle
+.bundle
+
+# con-app
+db/seeds/v5
