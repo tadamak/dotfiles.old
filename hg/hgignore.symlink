@@ -1,6 +1,10 @@
 syntax: glob
 vendor/bundle
 .bundle
+.DS_Store
+.idea
 
 # con-app
 db/seeds/v5
+lib/ca-bundle.crt
+config/initializers/fix_ssl.rb
