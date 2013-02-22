@@ -51,9 +51,9 @@ useother = resolve --tool internal:other
 u = update
 
 # push
-nudge = !$HG out ${*:-"-r ."} && \
+nudge = !$HG out $@ ${*:-"-r ."} && \
         read -p 'OK?:(y/n) '; [ "$REPLY" == "y" ] && \
-        $HG push ${*:-"-r ."}
+        $HG push $@ ${*:-"-r ."}
 #push = ! echo -e "\033[31m(use 'hg nudge' to push changesets)\033[m"
 
 # diff
