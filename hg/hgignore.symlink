@@ -3,6 +3,7 @@ vendor/bundle
 .bundle
 .DS_Store
 .idea
+TAGS
 
 # con-app
 db/seeds/v5
