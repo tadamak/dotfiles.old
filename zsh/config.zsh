@@ -57,3 +57,8 @@ bindkey "^N" history-beginning-search-forward-end
 setopt auto_cd
 setopt auto_pushd
 setopt pushd_ignore_dups
+
+# z
+_Z_CMD=j
+source `brew --prefix`/etc/profile.d/z.sh
+compctl -U -K _z_zsh_tab_completion "$_Z_CMD"
