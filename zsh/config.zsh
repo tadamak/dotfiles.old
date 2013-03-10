@@ -12,7 +12,7 @@ fpath=($ZSH/zsh/functions $fpath)
 autoload -U $ZSH/zsh/functions/*(:t)
 
 export HISTFILE=~/.zsh_history
-export HISTSIZE=100000
+export HISTSIZE=10000
 export SAVEHIST=100000
 
 setopt NO_BG_NICE # don't nice background tasks
