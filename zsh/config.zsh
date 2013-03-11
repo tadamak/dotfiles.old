@@ -12,7 +12,7 @@ fpath=($ZSH/zsh/functions $fpath)
 autoload -U $ZSH/zsh/functions/*(:t)
 
 export HISTFILE=~/.zsh_history
-export HISTSIZE=100000
+export HISTSIZE=10000
 export SAVEHIST=100000
 
 setopt NO_BG_NICE # don't nice background tasks
@@ -57,3 +57,8 @@ bindkey "^N" history-beginning-search-forward-end
 setopt auto_cd
 setopt auto_pushd
 setopt pushd_ignore_dups
+
+# z
+_Z_CMD=j
+source `brew --prefix`/etc/profile.d/z.sh
+compctl -U -K _z_zsh_tab_completion "$_Z_CMD"
