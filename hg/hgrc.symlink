@@ -4,16 +4,88 @@ ignore = ~/.hgignore
 ssh = ssh -C
 
 [extensions]
+churn =
 color =
+convert =
 eol =
-graphlog =
+extdiff =
+histedit =
 mq =
 pager =
+parentrevspec =
 progress =
 rebase =
 record =
+schemes =
 transplant =
 prompt = $HOME/.dotfiles/hg/prompt.py
+
+[alias]
+_status = status
+st = ! $HG _status $($HG root) $HG_ARGS
+# misc
+cm = commit --message
+. = summary
+: = st
+h = help
+
+# branch
+b = branch
+bs = branches -a
+
+# log
+l = log
+lb = log -b
+show = log --color=always -vpr
+less = log -vpr "reverse(not merge())"
+glog = log --graph
+gl = glog
+gll = glog --limit
+
+# shortlog
+shortlog  = log  --template "{label('changeset.{phase}', '{rev}:{node|short}')}{ifeq(p2node|short, '000000000000', '', '\033[1m\033[30m')} | {date|shortdate} | {author|emailuser}: {desc|strip|firstline}\033[0m\n"
+gshortlog = glog --template "{label('changeset.{phase}', '{rev}:{node|short}')}{ifeq(p2node|short, '000000000000', '', '\033[1m\033[30m')} | {date|shortdate} | {author|emailuser}: {desc|strip|firstline}\033[0m
+  {ifeq(branch, 'default', label('gshortlog.branch.default', 'default'), label('gshortlog.branch.other', '{branch}'))
+  } {label('gshortlog.bookmarks', join(bookmarks, ','))}{if(bookmarks, ' ')}{label('gshortlog.tags', join(tags, ','))}
+  "
+
+# locate
+#grepfile = ! $HG locate --print0 | xargs --null grep $@
+gf = grepfile
+
+# resolve
+mark = resolve -m
+unmark = resolve -u
+conflicts = resolve -l
+uselocal = resolve --tool internal:local
+useother = resolve --tool internal:other
+
+# pull & push
+nudge = push --rev .
+push = ! echo -e "\033[31m(use 'hg nudge' to push changesets)\033[m"
+
+# mq
+qi = qimport
+qr = qrefresh
+qf = qfinish
+qls = qseries --summary
+qst = status --change qtip
+qdrag = qpush --move
+
+# power of commit
+poc = churn -t '{author|email}' -c
+
+qnow = ! $HG qnew $(date +'%Y-%m-%d_%H-%M-%S.diff') -m "[from now] $(date +'%Y-%m-%d %H:%M:%S')" $@
+
+# ack
+ack = !$HG locate "set:not ignored()" | xargs ack $@
+
+[pager]
+pager = LESS='FRX' less
+attend = annotate, cat, diff, export, glog, log, qdiff, help, show, shortlog, gshortlog, less, grepfile, gf
+
+[diff]
+git = True
 
 [color]
 status.modified = cyan
@@ -31,67 +103,21 @@ diff.deleted = red
 diff.inserted = green
 diff.changed = white
 diff.trailingwhitespace = white_background
+changeset.secret = blue bold underline
+changeset.draft = green underline
+changeset.public = yellow
 
-[alias]
-_status = status
-st = ! $HG _status $($HG root) $HG_ARGS
-
-# branch
-b = branch
-bs = branches -a
-
-# resolve
-mark = resolve -m
-unmark = resolve -u
-conflicts = resolve -l
-uselocal = resolve --tool internal:local
-useother = resolve --tool internal:other
-
-# update
-u = update
-
-# push
-nudge = !$HG out $@ ${*:-"-r ."} && \
-        read -p 'OK?:(y/n) '; [ "$REPLY" == "y" ] && \
-        $HG push $@ ${*:-"-r ."}
-#push = ! echo -e "\033[31m(use 'hg nudge' to push changesets)\033[m"
-
-# diff
-di = diff -p --color=auto
-dl = !"$HG" diff -p --color=always $@ | less -R
-
-# log
-gl = glog -l100 --template='\033[0;33m{rev}\033[0m {desc|firstline|strip} \033[0;35m{branches}\033[0m \033[0;33m{tags}\033[0m\n\033[1;30m({date|age} by {author|person})\033[0m\n\n'
-show = log --color=always -pr
-less = log -pr "reverse(not merge())"
-
-# shortlog
-l = log  --template '\033[31m{rev}:{node|short}\033[m | {date|shortdate} | {author|user}: {desc|strip|firstline}\n'
-ll = glog --template '\033[31m{rev}:{node|short}\033[m | {date|shortdate} | {author|user}: {desc|strip|firstline}\n\033[36m{branches}\033[m\n'
-
-# mq
-qi = qimport
-qr = qrefresh
-qf = qfinish
-ql = qseries -v
-qls = qseries --summary
-qst = status --change qtip
-qdrag = qpush --move
-qnow = ! $HG qnew $(date +'%Y-%m-%d_%H-%M-%S.diff) -m "[from now] $(date +'%Y-%m-%d %H:%M:%S')" $@
-
-# ack
-ack = !$HG locate "set:not ignored()" | xargs ack $@
-
-# Simple bug/todo tracking
-# Idea from Justin: http://gist.github.com/464871
-# Install t first: http://bitbucket.org/sjl/t/
-bug = !$HOME/.dotfiles/hg/t.py --task-dir="`$HG root`" --list=BUGS $@
-todo = !$HOME/.dotfiles/hg/t.py --task-dir="`$HG root`" --list=TODO $@
-fixme = !$HOME/.dotfiles/hg/t.py --task-dir="`$HG root`" --list=FIXME $@
-
-[pager]
-pager = LESS='FRX' less
-attend = annotate, cat, diff, export, glog, log, qdiff, help, show, less, l, ll, gl, ack, bug, todo
+gshortlog.branch.default = white
+gshortlog.branch.other = cyan bold
+gshortlog.bookmarks = red bold
+gshortlog.tags = green bold
 
 [diff]
 git = True
+
+[mq]
+secret = True
+
+# include settings
+%include $HOME/.dotfiles/hg/typo.rc
+%include $HOME/.dotfiles/hg/hooks.rc
