@@ -3,4 +3,4 @@
 
 [hooks]
 pretxncommit.whitespace = $HOME/.dotfiles/hg/hooks/check_whitespace.py
-pretxncommit.conflicts = $HOME/.dotfiles/hg/hooks/detect_merge_conflicts.py
+#pretxncommit.conflicts = $HOME/.dotfiles/hg/hooks/detect_merge_conflicts.py
