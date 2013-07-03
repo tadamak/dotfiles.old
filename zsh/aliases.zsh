@@ -7,5 +7,8 @@ alias -g T='| tail'
 alias e='emacsclient'
 alias pd='popd'
 alias hi='history'
+alias ...='cd ../..'
+alias _='sudo '
+
 
 alias mosh='LC_CTYPE=$(echo $LANG) mosh'
