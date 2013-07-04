@@ -28,7 +28,7 @@ cm = commit --message
 . = summary
 : = st
 h = help
-u = update
+u = update --check
 
 # branch
 b = branch
@@ -62,8 +62,10 @@ uselocal = resolve --tool internal:local
 useother = resolve --tool internal:other
 
 # pull & push
-nudge = push --rev .
-push = ! echo -e "\033[31m(use 'hg nudge' to push changesets)\033[m"
+nudge = !$HG out $@ ${*:-"-r ."} && \
+        read -p 'OK?:(y/n) '; [ "$REPLY" == "y" ] && \
+        $HG push $@ ${*:-"-r ."}
+#push = ! echo -e "\033[31m(use 'hg nudge' to push changesets)\033[m"
 
 # mq
 qi = qimport
