@@ -71,6 +71,7 @@ nudge = !$HG out $@ ${*:-"-r ."} && \
 qi = qimport
 qr = qrefresh
 qf = qfinish
+ql = qseries -v
 qls = qseries --summary
 qst = status --change qtip
 qdrag = qpush --move
