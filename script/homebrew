@@ -20,7 +20,7 @@ brew install grc coreutils
 brew install --disable-etcdir zsh
 
 # Install rbenv
-. ./brew_rbenv
+#. ./brew_rbenv
 
 # Install tmux
 brew install tmux
