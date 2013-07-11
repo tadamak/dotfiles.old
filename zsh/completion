@@ -17,3 +17,8 @@ setopt LIST_TYPES
 setopt MAGIC_EQUAL_SUBST # --prefix=/usr などの=以降でも補完
 setopt PRINT_EIGHT_BIT
 setopt BRACE_CCL
+
+if [[ -d /usr/local/share/zsh-completions ]]
+then
+  fpath=(/usr/local/share/zsh-completions $fpath)
+fi
