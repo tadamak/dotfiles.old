@@ -24,7 +24,7 @@ bind -r L resize-pane -R 2
 bind -r J resize-pane -D 4
 bind -r K resize-pane -U 4
 
-set -g default-terminal "screen"
+set -g default-terminal "screen-256color"
 
 # statusbar
 set -g status-fg colour136 #yellow
