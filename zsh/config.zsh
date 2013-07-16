@@ -60,5 +60,10 @@ setopt pushd_ignore_dups
 
 # z
 _Z_CMD=j
-source `brew --prefix`/etc/profile.d/z.sh
+if $(which rbenv &> /dev/null)
+then
+    . `brew --prefix`/etc/profile.d/z.sh
+else
+    [[ -s /etc/profile.d/autojump.zsh ]] && . /etc/profile.d/autojump.zsh
+fi
 compctl -U -K _z_zsh_tab_completion "$_Z_CMD"
