@@ -2,7 +2,7 @@ set -g prefix C-t
 unbind C-b
 set -sg escape-time 1
 # pass through prefix-key
-#bind C-t send-prefix
+bind C-t send-prefix
 
 bind r source-file ~/.tmux.conf \; display "Reloaded!"
 
@@ -24,7 +24,13 @@ bind -r L resize-pane -R 2
 bind -r J resize-pane -D 4
 bind -r K resize-pane -U 4
 
+bind ! confirm-before -p "kill-session? (y/n)" kill-session
+bind & confirm-before -p "kill-window? (y/n)" kill-window
+
 set -g default-terminal "screen-256color"
+
+# use local ruby version
+set-environment -gu RBENV_VERSION
 
 # statusbar
 set -g status-fg colour136 #yellow
