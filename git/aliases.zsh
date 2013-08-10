@@ -1,9 +1,8 @@
 if $(which hub &> /dev/null)
 then
-  alias g='hub'
-else
-  alias g='git'
+  eval "$(hub alias -s)"
 fi
 
+alias g='git'
 alias gf='git-flow'
 # The rest of my fun git aliases
