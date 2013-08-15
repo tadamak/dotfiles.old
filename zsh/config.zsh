@@ -60,7 +60,7 @@ setopt pushd_ignore_dups
 
 # z
 _Z_CMD=j
-if $(which rbenv &> /dev/null)
+if $(which brew &> /dev/null)
 then
     . `brew --prefix`/etc/profile.d/z.sh
 else
