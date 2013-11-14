@@ -1,0 +1,47 @@
+#!/usr/bin/env ruby
+
+require 'pry'
+require 'pry-debugger'
+
+class PrePushHandler
+  def handle
+    exit_if_up_to_date
+    feedback pushing_contents
+    exit continue? ? 0 : 1
+  end
+
+  private
+
+  def pushing_contents
+    contents = ["Repository: #{ARGV[0]} (#{ARGV[1]})"]
+    contents << "Branch    : #{info[0]} -> #{info[2]}"
+    contents << "Range     : #{info[3]}..#{info[1]}"
+    contents << "Log:"
+    contents << %x{git log --color #{range} | cat}
+    # contents << %x{git log --color --oneline #{range} | cat}
+  end
+
+  def info
+    @info ||= $stdin.read.strip.split(' ')
+  end
+
+  def feedback(messages)
+    puts '*' * 60
+    [messages].flatten.each do |message|
+      puts message
+    end
+    puts '*' * 60
+  end
+
+  def exit_if_up_to_date
+    exit 0 if info.empty?
+  end
+
+  def continue?
+    $stdin.reopen(File.open('/dev/tty', 'r'))
+    print 'OK? (y/n): '
+    'y' == $stdin.getc.downcase
+  end
+end
+
+PrePushHandler.new.handle

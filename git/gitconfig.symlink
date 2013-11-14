@@ -12,6 +12,8 @@
     editor = emacsclient
 [apply]
     whitespace = warn
+[init]
+    templatedir= ~/.dotfiles/git/git-hooks
 [github]
     user = tadamak
 
