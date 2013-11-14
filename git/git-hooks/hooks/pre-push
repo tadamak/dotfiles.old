@@ -15,7 +15,7 @@ class PrePushHandler
   def pushing_contents
     contents = ["Repository: #{ARGV[0]} (#{ARGV[1]})"]
     contents << "Branch    : #{info[0]} -> #{info[2]}"
-    contents << "Range     : #{info[3]}..#{info[1]}"
+    contents << "Range     : #{range}"
     contents << "Log:"
     contents << %x{git log --color #{range} | cat}
     # contents << %x{git log --color --oneline #{range} | cat}
@@ -23,6 +23,10 @@ class PrePushHandler
 
   def info
     @info ||= $stdin.read.strip.split(' ')
+  end
+
+  def range
+    "#{info[3]}..#{info[1]}"
   end
 
   def feedback(messages)
