@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
 require 'pry'
-require 'pry-debugger'
+require 'pry-byebug'
 
 class PrePushHandler
   def handle

@@ -5,4 +5,5 @@ fi
 
 alias g='git'
 alias gf='git-flow'
+alias t='tig'
 # The rest of my fun git aliases

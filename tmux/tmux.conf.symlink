@@ -81,10 +81,12 @@ set -g visual-activity on
 bind P pipe-pane -o "cat >>~/#W.log" \; display "Toggled logging to ~/#W.log"
 
 # OSX clipboard
-# cf. http://w.koshigoe.jp/study/?%5Bsystem%5D+tmux%A5%C1%A5%E5%A1%BC%A5%C8%A5%EA%A5%A2%A5%EB#l19
 set -g default-command "reattach-to-user-namespace -l $SHELL"
-bind C-c run "tmux save-buffer - | reattach-to-user-namespace pbcopy"
-bind C-v run "tmux set-buffer $(reattach-to-user-namespace pbpaste); tmux paste-buffer"
+bind -t emacs-copy C-w   copy-pipe "reattach-to-user-namespace pbcopy"
+bind -t emacs-copy M-w   copy-pipe "reattach-to-user-namespace pbcopy"
+bind -t emacs-copy Enter copy-pipe "reattach-to-user-namespace pbcopy"
+
+bind-key C-y paste-buffer
 
 bind -t emacs-copy up page-up
 bind -t emacs-copy down page-down
