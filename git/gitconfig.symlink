@@ -17,7 +17,8 @@
     templatedir= ~/.dotfiles/git/git-hooks
 [github]
     user = tadamak
-
+[ghq]
+    root = ~/src
 [alias]
     b = branch
     ba = branch -a
