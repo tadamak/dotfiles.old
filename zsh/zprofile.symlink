@@ -3,7 +3,7 @@ export ZSH=$HOME/.dotfiles
 
 export MANPATH="/usr/local/man:/usr/local/git/man:$MANPATH"
 export LANG=ja_JP.UTF-8
-export PATH="$ZSH/bin:/usr/local/bin:/usr/local/sbin:$PATH"
+export PATH="$HOME/bin:$ZSH/bin:/usr/local/bin:/usr/local/sbin:$PATH"
 
 # source every .zprofile file
 for config_file ($ZSH/**/*.zprofile) source $config_file
