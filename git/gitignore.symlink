@@ -3,3 +3,6 @@
 .idea
 .svn
 *.pyc
+
+# ncsa
+pdflib.rb
