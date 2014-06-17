@@ -4,7 +4,3 @@ then
 else
   compdef g=git
 fi
-
-# git-flow completion
-source /usr/local/share/zsh/site-functions/git-flow-completion.zsh
-compdef _git-flow gf
