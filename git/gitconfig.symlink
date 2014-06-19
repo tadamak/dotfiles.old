@@ -22,10 +22,13 @@
 [alias]
     b = branch
     ba = branch -a
+    bd = branch -D
     br = branch -r
     ci = commit
     co = checkout
     cob = checkout -b
+    cod = checkout development
+    com = checkout master
     cp = cherry-pick
     d = diff
     db = diff HEAD
