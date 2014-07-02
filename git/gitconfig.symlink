@@ -27,7 +27,7 @@
     ci = commit
     co = checkout
     cob = checkout -b
-    cod = checkout development
+    cod = checkout develop
     com = checkout master
     cp = cherry-pick
     d = diff
@@ -38,7 +38,7 @@
     fix = commit --amend
     fixup = !git fu
     fu = commit --amend -C HEAD
-    g = grep
+    g = grep -n
     l = log
     l1 = log --pretty=oneline --abbrev-commit
     lg = log --graph --pretty=oneline --abbrev-commit --decorate
@@ -55,6 +55,8 @@
     merge-to-pull = !git m --ff
     mi = !git merge-to-integrate
     mp = !git merge-to-pull
+    pod = push origin develop
+    pud = pull upstream develop
     ra = rebase --abort
     rc = rebase --continue
     review = !git log -p --reverse \"${1:master}..HEAD\" --

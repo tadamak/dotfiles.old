@@ -7,11 +7,28 @@ Pry.commands.alias_command 'l', 'whereami'
 
 Pry.config.editor = proc { |file, line| "emacsclient +#{line} #{file}" }
 
+alias :r :require
+
+def r(name)
+  require name.to_s
+end
+
+def rr
+  require "active_support/all"
+end
+
 begin
-  require 'awesome_print'
-  Pry.config.print = proc { |output, value| output.puts value.ai }
-rescue LoadError
-  puts "no awesome_print :("
+  require "awesome_print"
+
+  def pbcopy(str, opts = {})
+    IO.popen('pbcopy', 'r+') { |io| io.print str }
+  end
+
+  Pry.config.commands.command "copy", "Copy last evaluated object to clipboard" do
+    pbcopy _pry_.last_result.ai(:plain => true, :indent => 2, :index => false)
+    output.puts "Copied!"
+  end
+rescue Exception
 end
 
 begin
@@ -37,3 +54,4 @@ if defined? Hirb
   end
   Hirb.enable
 end
+
