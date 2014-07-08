@@ -81,7 +81,12 @@
     sms = submodule status
     smu = submodule update
     sp = stash pop
-    ss = stash save
+    ss = stash show stash@{0}
+    ssa = stash apply stash@{0}
+    sss = stash show stash@{1}
+    sssa = stash apply stash@{1}
+    ss1 = stash show stash@{1}
+    ss1a = stash apply stash@{1}
     st = status --short --branch
     stt = status
     t = tag
