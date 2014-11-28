@@ -4,7 +4,7 @@ alias -g L='| lv'
 alias -g G='| grep'
 alias -g T='| tail'
 
-alias e='emacsclient'
+alias e='emacsclient -t'
 alias pd='popd'
 alias hi='history'
 alias ...='cd ../..'
