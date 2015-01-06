@@ -56,7 +56,9 @@
     mi = !git merge-to-integrate
     mp = !git merge-to-pull
     pod = push origin develop
+    pom = push origin master
     pud = pull upstream develop
+    pum = pull upstream master
     ra = rebase --abort
     rc = rebase --continue
     review = !git log -p --reverse \"${1:master}..HEAD\" --
