@@ -3,6 +3,3 @@
 .idea
 .svn
 *.pyc
-
-# ncsa
-PDFlib.bundle

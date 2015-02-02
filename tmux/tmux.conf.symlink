@@ -60,10 +60,9 @@ setw -g clock-mode-colour colour64 #green
 
 #set -g status-left-length 40
 #set -g status-left "#[fg=green]#S #[fg=yellow]#I #[fg=cyan]#P"
-#set -g status-right "#[fg=cyan]%d %b %R"
-set -g status-left "#S #[default,fg=color240]#W #[default,fg=color244](#I/#P)#[default] @#h#[default,fg=colour45]"
+set -g status-left "#[fg=colour211,bold]%Y/%m/%d #[fg=colour81]%H:#[default,fg=colour75,bold]%M#[default] #S #[default,fg=color240]#W #[default,fg=color244](#I/#P)#[default] @#h#[default,fg=colour45]"
 set -g status-left-length 40
-set -g status-right "#[fg=colour211,bold]%Y/%m/%d #[fg=colour81]%H:#[default,fg=colour75,bold]%M#[default]"
+set -g status-right "#[fg=cyan]%d %b $R"
 set -g status-right-length 40
 
 set -g status-utf8 on
