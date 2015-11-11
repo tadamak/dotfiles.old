@@ -9,6 +9,8 @@ alias rs='rails server'
 alias rr='rbenv rehash'
 alias rbinst='CONFIGURE_OPTS="--with-readline-dir=/usr/local --with-openssl-dir=/usr/local" rbenv install'
 alias ru='rackup $HOME/.config.ru'
+alias pf='powify'
+alias fs='foreman start'
 
 alias devlog='tail -f log/development.log'
 alias prodlog='tail -f log/production.log'

@@ -3,3 +3,10 @@
 .idea
 .svn
 *.pyc
+*.iml
+.foreman
+.ruby-version
+.sass-cache/
+Procfile.development
+public/tmp/
+public/uploads/

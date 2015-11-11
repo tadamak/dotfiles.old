@@ -17,6 +17,7 @@ progress =
 rebase =
 record =
 schemes =
+shelve =
 transplant =
 prompt = $HOME/.dotfiles/hg/prompt.py
 

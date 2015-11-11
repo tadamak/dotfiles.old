@@ -6,7 +6,7 @@ bind C-t send-prefix
 
 bind r source-file ~/.tmux.conf \; display "Reloaded!"
 
-setw -g mode-mouse off
+# setw -g mode-mouse off
 
 bind v split-window -v
 bind | split-window -h
@@ -90,5 +90,4 @@ bind-key C-y paste-buffer
 bind -t emacs-copy up page-up
 bind -t emacs-copy down page-down
 
-bind a command-prompt -p "alc:" "split-window 'source ~/.dotfiles/zsh/functions/alc; alc %%'"
-bind m command-prompt -p "man:" "split-window -h 'man %%'"
+bind s setw synchronize-panes
