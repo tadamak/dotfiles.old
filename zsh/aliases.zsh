@@ -20,3 +20,4 @@ src() { cd $HOME/Dropbox/code/$1 }
 
 alias q='ghq list -p | p cd'
 alias dfwd='ssh -fN -D 1080'
+alias ss="grep -e ^Host ~/.ssh/config | peco | cut -d' ' -f2 | xargs -o -n 1 ssh"
