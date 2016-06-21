@@ -1,11 +1,11 @@
 [user]
-    name = tadamak
-    email = tadamak@gmail.com
+	name = Takehiro KAMADA
+	email = tadamak@timedia.co.jp
 [color]
     ui = auto
 [core]
     pager = less -r
-    excludesfile = ~/.gitignore
+	excludesfile = /Users/tadamak/.gitignore
     safecrlf = false
     quotepath = off
     autocrlf = false
@@ -106,3 +106,11 @@
     tv = !git tag \"$1\" -m \"Version $1\"
 [push]
 	default = matching
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
+[http]
+	sslVerify = false
