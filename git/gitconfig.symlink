@@ -55,11 +55,13 @@
     merge-to-pull = !git m --ff
     mi = !git merge-to-integrate
     mp = !git merge-to-pull
+    openpr = "!f() { hub browse -- `git log --merges --oneline --reverse --ancestry-path $1...HEAD | grep 'Merge pull request #' | head -n 1 | cut -f5 -d' ' | sed -e 's%#%pull/%'`; };f"
     pod = push origin develop
     pom = push origin master
     prs = "!f() { git fetch $1 refs/pull-requests/$2/from:pr$2; } ; f"
     pud = pull upstream develop
     pum = pull upstream master
+    pushup = "!gitbranchname() { git symbolic-ref --short HEAD; }; gitpushupstream() { git push --set-upstream origin `gitbranchname`; }; gitpushupstream"
     ra = rebase --abort
     rbm = !git branch --merged upstream/master | grep $1 | xargs -n1 -t git branch -d
     rbd = !git branch --merged upstream/develop | grep $1 | xargs -n1 -t git branch -d
@@ -78,6 +80,7 @@
     s3 = show HEAD@{3}
     sa = stash apply
     sd = stash drop
+    showpr = !"f() { git log --merges --oneline --reverse --ancestry-path $1...HEAD | grep 'Merge pull request #' | head -n 1; };f"
     since = !git lg \"$1..HEAD\"
     sl = stash list
     sm = submodule
